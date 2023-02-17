@@ -1,0 +1,85 @@
+embedding: raw, extract_fn: bert, lf_selector: snuba_multiclass, 
+n_labeled_points: 300, snuba_cardinality: 1, snuba_iterations: 1 
+label model test acc:    0.018867924528301886
+label model coverage:     0.03298070939639079 
+
+embedding: raw, extract_fn: bert, lf_selector: snuba_multiclass, 
+n_labeled_points: 100, snuba_cardinality: 10, snuba_iterations: 1 
+label model test acc:    0.06563706563706563
+label model coverage:     0.1611698817672682 
+
+embedding: raw, extract_fn: bert, lf_selector: snuba_multiclass, 
+n_labeled_points: 300, snuba_cardinality: 10, snuba_iterations: 1 
+label model test acc:    0.010309278350515464
+label model coverage:     0.12072184194150591 
+
+embedding: raw, extract_fn: bert, lf_selector: snuba_multiclass, 
+n_labeled_points: 300, snuba_cardinality: 1, snuba_iterations: 10 
+label model test acc:    0.02510460251046025
+label model coverage:     0.14872433105164903 
+
+embedding: raw, extract_fn: bert, lf_selector: snuba_multiclass, 
+n_labeled_points: 100, snuba_cardinality: 10, snuba_iterations: 10 
+label model test acc:    0.05120481927710843
+label model coverage:     0.20659614187927816 
+
+embedding: raw, extract_fn: bert, lf_selector: snuba_multiclass, 
+n_labeled_points: 300, snuba_cardinality: 10, snuba_iterations: 10 
+label model test acc:    0.026239067055393587
+label model coverage:     0.2134411947728687 
+
+embedding: raw, extract_fn: bert, lf_selector: snuba_multiclass, 
+n_labeled_points: 1200, snuba_cardinality: 10, snuba_iterations: 23, snuba_combo_samples: 1000 
+label model test acc:    0.18620689655172415
+label model coverage:     0.09023024268823895 
+
+embedding: raw, extract_fn: bert, lf_selector: snuba_multiclass, 
+n_labeled_points: 1500, snuba_cardinality: 10, snuba_iterations: 23, snuba_combo_samples: 1000 
+label model test acc:    0.21782178217821782
+label model coverage:     0.06285003111387678 
+
+embedding: raw, extract_fn: bert, lf_selector: snuba_multiclass, 
+n_labeled_points: 100, snuba_cardinality: 10, snuba_iterations: 23, snuba_combo_samples: 1000 
+label model test acc:    0.052307692307692305
+label model coverage:     0.20224019912881144 
+
+embedding: raw, extract_fn: bert, lf_selector: snuba_multiclass, 
+n_labeled_points: 300, snuba_cardinality: 10, snuba_iterations: 23, snuba_combo_samples: 1000 
+label model test acc:    0.09056603773584905
+label model coverage:     0.16490354698195395 
+
+embedding: raw, extract_fn: bert, lf_selector: snuba_multiclass, 
+n_labeled_points: 1500, snuba_cardinality: 10, snuba_iterations: 23, snuba_combo_samples: 1000 
+label model test acc:    0.19205298013245034
+label model coverage:     0.0939639079029247 
+
+embedding: raw, extract_fn: bert, lf_selector: snuba_multiclass, 
+n_labeled_points: 100, snuba_cardinality: 10, snuba_iterations: 23, snuba_combo_samples: 1000 
+label model test acc:    0.05714285714285714
+label model coverage:     0.1088985687616677 
+
+embedding: raw, extract_fn: bert, lf_selector: snuba_multiclass, 
+n_labeled_points: 100, snuba_cardinality: 1, snuba_iterations: 1, snuba_combo_samples: -1 
+label model test acc:    0.06388206388206388
+label model coverage:     0.25326695706285 
+top 5 label model test acc:   0.32186732186732187
+val-data label counts: [3 2 8 2 0 1 2 0 0 2 4 0 1 2 0 0 2 3 6 0 3 8 6 3 0 4 3 3 2 3 5 0 2 0 1 0 0
+ 2 5 0 4 2 2 1 2 1]
+
+embedding: raw, extract_fn: bert, lf_selector: snuba_multiclass, 
+n_labeled_points: 300, snuba_cardinality: 10, snuba_iterations: 23, snuba_combo_samples: 1000 
+label model test acc:    0.032171581769437
+label model coverage:     0.23210952084629746 
+top 5 label model test acc:   0.30563002680965146
+val-data label counts: [ 9  2 18  5  2  6  5  4  3  8  7  0  5  9  0  5  7  5  8  0  7 28 17 18
+  1  9  9  9  3 11 19  1  8  0  1  0  0  4 12  2 11  8  4  2  3  5]
+
+embedding: raw, extract_fn: bert, lf_selector: snuba_multiclass, 
+n_labeled_points: 1500, snuba_cardinality: 10, snuba_iterations: 23, snuba_combo_samples: 1000 
+label model test acc:    0.19333333333333333
+label model coverage:     0.09334163036714374 
+top 5 label model test acc:   0.38666666666666666
+val-data label counts: [ 38  13  76  35  12  24  33  19   8  62  27   9  36  44   8  10  31  34
+  32  30  24 140  73  97  19  34  35  29  16  86  61   2  19   1   2   1
+   8  15  77   7  42  36  24  37   7  27]
+

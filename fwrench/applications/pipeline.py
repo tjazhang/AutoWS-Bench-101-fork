@@ -2,6 +2,19 @@ import logging
 import random
 import copy
 
+import argparse
+import contextlib
+import gc
+import json
+import logging
+import multiprocessing
+import os
+import signal
+import sys
+from pprint import pprint
+
+import warnings
+
 import fire
 import fwrench.embeddings as feats
 import fwrench.utils.autows as autows
@@ -10,38 +23,63 @@ import numpy as np
 import torch
 from sklearn.decomposition import PCA
 from sklearn.metrics import accuracy_score
+from sklearn.metrics import top_k_accuracy_score
 from wrench.logging import LoggingHandler
 
 
-def main(
-    dataset="mnist",
-    dataset_home="./datasets",
-    embedding="pca",  # raw | pca | resnet18 | vae
+if __name__ == "__main__":
+    parser = argparse.ArgumentParser(description="An pipeline manager for the AutoWS-Bench-101")
+
+    parser.add_argument("-d", "--dataset", help="Dataset to run experiments on (default: youtube)", default="youtube")
+    parser.add_argument("-e", "--embedding", help="raw | pca | resnet18 | vae", default="raw")
+    parser.add_argument("-r", "--root", help="Directory root storing all the datasets (default: ./)",
+                        default="/gscratch/efml/tzhang26/limits-of-ws/weak_datasets")
+    parser.add_argument("-ef", "--extract_fn", help="Extraction function used for dataset (text only)", default="bert")
+
+    parser.add_argument("-lfs", "--lf_selector", default="snuba")
+    parser.add_argument("-hl", "--hard_label", help="use hard label for label model (default: False)",
+                        action='store_true')
+    parser.add_argument("-nlp", "--n_labeled_points", type = int, default=100)
+    parser.add_argument("-scs", "--snuba_combo_samples", type = int, default=-1)
+    parser.add_argument("-sc", "--snuba_cardinality", type = int, default=1)
+    parser.add_argument("-si", "--snuba_iterations", type = int, default=23)
+    parser.add_argument("-lco", "--lf_class_options", default="default")
+
+
+    args = parser.parse_args()
+
+    dataset= args.dataset
+    dataset_home= args.root
+    embedding=args.embedding  # raw | pca | resnet18 | vae
     # text dataset only
-    extract_fn = "bert", # bow | bert | tfidf | sentence_transformer
+    extract_fn = args.extract_fn # bow | bert | tfidf | sentence_transformer
     #
     # Goggles options
-    goggles_method="SemiGMM", # SemiGMM | KMeans | Spectral
+    goggles_method="SemiGMM" # SemiGMM | KMeans | Spectral
     #
-    lf_selector="snuba",  # snuba | interactive | goggles
-    em_hard_labels=False,  # Use hard or soft labels for end model training
-    n_labeled_points=100,  # Number of points used to train lf_selector
+    lf_selector=args.lf_selector # snuba | interactive | goggles
+
+    em_hard_labels=False
+    if args.hard_label:
+        em_hard_labels=True  # Use hard or soft labels for end model training
+
+    n_labeled_points=args.n_labeled_points  # Number of points used to train lf_selector
     #
     # Snuba options
-    snuba_combo_samples=-1,  # -1 uses all feat. combos
+    snuba_combo_samples=args.snuba_combo_samples # -1 uses all feat. combos
     # TODO this needs to work for Snuba and IWS
-    snuba_cardinality=1,  # Only used if lf_selector='snuba'
-    iws_cardinality=1,
-    snuba_iterations=23,
-    lf_class_options="default",  # default | comma separated list of lf classes to use in the selection procedure. Example: 'DecisionTreeClassifier,LogisticRegression'
+    snuba_cardinality=args.snuba_cardinality # Only used if lf_selector='snuba'
+    
+    iws_cardinality=1
+    snuba_iterations=args.snuba_iterations
+    lf_class_options=args.lf_class_options # default | comma separated list of lf classes to use in the selection procedure. Example: 'DecisionTreeClassifier,LogisticRegression'
     #
     # Interactive Weak Supervision options
-    iws_iterations=25,
-    iws_auto = True,
-    iws_usefulness = 0.6,
-    seed=123,
-    prompt=None,
-):
+    iws_iterations=25
+    iws_auto = True
+    iws_usefulness = 0.6
+    seed=123
+    prompt=None
 
     ################ HOUSEKEEPING/SELF-CARE 😊 ################################
     random.seed(seed)
@@ -120,6 +158,14 @@ def main(
             train_data, valid_data, test_data, k_cls, model = settings.get_youtube(
                 n_labeled_points, dataset_home, extract_fn
             )
+    elif dataset == "amazon-high-card":
+        train_data, valid_data, test_data, k_cls, model = settings.get_amazon_high_card(
+                n_labeled_points, dataset_home, extract_fn
+        )
+    elif dataset == "banking-high-card":
+        train_data, valid_data, test_data, k_cls, model = settings.get_banking_high_card(
+                n_labeled_points, dataset_home, extract_fn
+        )
     else:
         raise NotImplementedError
 
@@ -264,11 +310,18 @@ def main(
     else:
         raise NotImplementedError
 
-    # TODO swtich to test set
     acc = accuracy_score(test_covered.labels, hard_labels)
+    acc_top5 = top_k_accuracy_score(test_covered.labels, soft_labels, k = 5, labels = np.arange(k_cls))
     cov = float(len(test_covered.labels)) / float(len(test_data.labels))
-    logger.info(f"label model train acc:    {acc}")
-    logger.info(f"label model coverage:     {cov}")
+    print( dataset, embedding, extract_fn, lf_selector, n_labeled_points, snuba_cardinality)
+    logger.info(f"label model test acc:    {acc}")
+    logger.info(f"top 5 label model test acc:   {acc_top5}")
+    logger.info(f"label model coverage:    {cov}")
+
+    with open("./results/{}.txt".format(args.dataset), "a") as outfile:
+        outfile.write(f"embedding: {args.embedding}, extract_fn: {args.extract_fn}, lf_selector: {args.lf_selector}, \nn_labeled_points: {args.n_labeled_points}, snuba_cardinality: {args.snuba_cardinality}, snuba_iterations: {args.snuba_iterations}, snuba_combo_samples: {args.snuba_combo_samples} \n")
+        outfile.write(f"label model test acc:    {acc}\nlabel model coverage:     {cov} \ntop 5 label model test acc:   {acc_top5}\n")
+        outfile.write("val-data label counts: " + np.array_str(np.bincount(valid_data.labels, minlength = k_cls))+ "\n\n")
 
     ################ TRAIN END MODEL ##########################################
     # model.fit(
@@ -284,8 +337,4 @@ def main(
     # acc = model.test(test_data, "acc")
     # logger.info(f"end model (LeNet) test acc:    {acc}")
     ################ PROFIT 🤑 #################################################
-    return acc
 
-
-if __name__ == "__main__":
-    fire.Fire(main)
