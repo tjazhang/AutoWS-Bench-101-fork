@@ -166,6 +166,10 @@ if __name__ == "__main__":
         train_data, valid_data, test_data, k_cls, model = settings.get_banking_high_card(
                 n_labeled_points, dataset_home, extract_fn
         )
+    elif dataset == "news-category":
+        train_data, valid_data, test_data, k_cls, model = settings.get_news_category(
+                n_labeled_points, dataset_home, extract_fn
+        )
     else:
         raise NotImplementedError
 
