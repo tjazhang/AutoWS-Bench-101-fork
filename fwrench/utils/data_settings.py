@@ -513,7 +513,7 @@ def get_banking_high_card(
 def get_news_category(
     n_labeled_points, dataset_home,  extract_fn, data_dir="news-category",
 ):
-    n_classes = 42
+    n_classes = 32
     
     data = data_dir
     extract_feature=(extract_fn != None)
