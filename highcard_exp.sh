@@ -25,12 +25,10 @@ export PYTHONPATH="/gscratch/efml/tzhang26/AutoWS-Bench-101-fork"
 # python fwrench/applications/pipeline.py --dataset banking-high-card --lf_selector snuba_multiclass -nlp 500 -scs=1000 -sc=10
 # python fwrench/applications/pipeline.py --dataset banking-high-card --lf_selector snuba_multiclass -nlp 1000 -scs=1000 -sc=10
 
-python fwrench/applications/pipeline.py --dataset news-category --lf_selector snuba_multiclass -nlp 100 -scs=1000 -sc=10
-python fwrench/applications/pipeline.py --dataset news-category --lf_selector snuba_multiclass -nlp 300 -scs=1000 -sc=10
-python fwrench/applications/pipeline.py --dataset news-category --lf_selector snuba_multiclass -nlp 500 -scs=1000 -sc=10
-
-
-
+# python fwrench/applications/pipeline.py --dataset news-category --lf_selector snuba_multiclass -nlp 100 -scs=1000 -sc=10
+# python fwrench/applications/pipeline.py --dataset news-category --lf_selector snuba_multiclass -nlp 300 -scs=1000 -sc=10
+# python fwrench/applications/pipeline.py --dataset news-category --lf_selector snuba_multiclass -nlp 500 -scs=1000 -sc=10
+python fwrench/applications/pipeline.py --dataset news-category --lf_selector snuba_multiclass -nlp 2000 -scs=1000 -sc=10
 
 
 
