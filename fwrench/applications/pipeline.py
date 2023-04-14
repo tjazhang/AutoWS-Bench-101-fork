@@ -78,6 +78,8 @@ if __name__ == "__main__":
     iws_iterations=25
     iws_auto = True
     iws_usefulness = 0.6
+
+
     seed=123
     prompt=None
 
@@ -168,6 +170,26 @@ if __name__ == "__main__":
         )
     elif dataset == "news-category":
         train_data, valid_data, test_data, k_cls, model = settings.get_news_category(
+                n_labeled_points, dataset_home, extract_fn
+        )
+    elif dataset == "dbpedia-219":
+        train_data, valid_data, test_data, k_cls, model = settings.get_dbpedia_219(
+                n_labeled_points, dataset_home, extract_fn
+        )
+    elif dataset == "dbpedia":
+        train_data, valid_data, test_data, k_cls, model = settings.get_dbpedia(
+                n_labeled_points, dataset_home, extract_fn
+        )
+    elif dataset == "dbpedia-111":
+        train_data, valid_data, test_data, k_cls, model = settings.get_dbpedia_111(
+                n_labeled_points, dataset_home, extract_fn
+    )
+    elif dataset == "massive-lowcard":
+        train_data, valid_data, test_data, k_cls, model = settings.get_massive_lowcard(
+                n_labeled_points, dataset_home, extract_fn
+        )
+    elif dataset == "banking77":
+        train_data, valid_data, test_data, k_cls, model = settings.get_banking77(
                 n_labeled_points, dataset_home, extract_fn
         )
     else:
@@ -322,7 +344,7 @@ if __name__ == "__main__":
     logger.info(f"top 5 label model test acc:   {acc_top5}")
     logger.info(f"label model coverage:    {cov}")
 
-    with open("./results/{}.txt".format(args.dataset), "a") as outfile:
+    with open("./results/{}.txt".format(args.dataset), "a+") as outfile:
         outfile.write(f"embedding: {args.embedding}, extract_fn: {args.extract_fn}, lf_selector: {args.lf_selector}, \nn_labeled_points: {args.n_labeled_points}, snuba_cardinality: {args.snuba_cardinality}, snuba_iterations: {args.snuba_iterations}, snuba_combo_samples: {args.snuba_combo_samples} \n")
         outfile.write(f"label model test acc:    {acc}\nlabel model coverage:     {cov} \ntop 5 label model test acc:   {acc_top5}\n")
         outfile.write("val-data label counts: " + np.array_str(np.bincount(valid_data.labels, minlength = k_cls))+ "\n\n")
