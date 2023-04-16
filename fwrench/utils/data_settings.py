@@ -607,7 +607,7 @@ def get_dbpedia(
     
     
 def get_dbpedia_111(
-    n_labeled_points, dataset_home,  extract_fn, data_dir="dbpedia-219",
+    n_labeled_points, dataset_home,  extract_fn, data_dir="dbpedia-111",
 ):
     n_classes = 111
     
