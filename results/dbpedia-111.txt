@@ -1,0 +1,9 @@
+embedding: raw, extract_fn: bert, lf_selector: snuba_multiclass, 
+n_labeled_points: 100, snuba_cardinality: 1, snuba_iterations: 23, snuba_combo_samples: -1 
+label model test acc:    0.02207609206200094
+label model coverage:     0.08708813122532878 
+top 5 label model test acc:   0.04790981681540629
+val-data label counts: [1 0 0 1 0 2 0 0 1 1 0 0 0 1 0 3 1 1 0 1 2 0 1 0 2 1 1 1 2 3 1 1 2 2 1 1 2
+ 2 0 0 0 1 0 0 0 0 1 2 0 1 0 1 1 2 1 2 3 1 3 3 2 0 0 1 3 0 1 0 2 3 0 0 1 2
+ 1 0 1 1 0 0 2 2 0 0 0 1 2 2 0 0 0 1 0 1 1 2 0 1 0 1 0 1 0 0 2 0 1 0 1 0 1]
+
