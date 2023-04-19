@@ -553,7 +553,7 @@ def get_dbpedia_219(
         dataset_home, data, extract_feature=extract_feature, extract_fn= extract_fn,
         cache_name=extract_fn, dataset_type="TextDataset"
     )
-    valid_data = valid_data.create_subset(np.arange(n_labeled_points))
+    valid_data = valid_data.create_subset(np.random.choice(len(valid_data), n_labeled_points, replace = False))
     
     if extract_fn is not None:
         train_data = utils.convert_text_to_feature(train_data)
@@ -585,8 +585,8 @@ def get_dbpedia(
         dataset_home, data, extract_feature=extract_feature, extract_fn= extract_fn,
         cache_name=extract_fn, dataset_type="TextDataset"
     )
-    valid_data = valid_data.create_subset(np.arange(n_labeled_points))
-    
+    valid_data = valid_data.create_subset(np.random.choice(len(valid_data), n_labeled_points, replace = False))
+
     if extract_fn is not None:
         train_data = utils.convert_text_to_feature(train_data)
         valid_data = utils.convert_text_to_feature(valid_data)
@@ -617,7 +617,7 @@ def get_dbpedia_111(
         dataset_home, data, extract_feature=extract_feature, extract_fn= extract_fn,
         cache_name=extract_fn, dataset_type="TextDataset"
     )
-    valid_data = valid_data.create_subset(np.arange(n_labeled_points))
+    valid_data = valid_data.create_subset(np.random.choice(len(valid_data), n_labeled_points, replace = False))
     
     if extract_fn is not None:
         train_data = utils.convert_text_to_feature(train_data)
@@ -649,7 +649,7 @@ def get_massive_lowcard(
         dataset_home, data, extract_feature=extract_feature, extract_fn= extract_fn,
         cache_name=extract_fn, dataset_type="TextDataset"
     )
-    valid_data = valid_data.create_subset(np.arange(n_labeled_points))
+    valid_data = valid_data.create_subset(np.random.choice(len(valid_data), n_labeled_points, replace = False))
     
     if extract_fn is not None:
         train_data = utils.convert_text_to_feature(train_data)
@@ -680,7 +680,7 @@ def get_banking77(
         dataset_home, data, extract_feature=extract_feature, extract_fn= extract_fn,
         cache_name=extract_fn, dataset_type="TextDataset"
     )
-    valid_data = valid_data.create_subset(np.arange(n_labeled_points))
+    valid_data = valid_data.create_subset(np.random.choice(len(valid_data), n_labeled_points, replace = False))
     
     if extract_fn is not None:
         train_data = utils.convert_text_to_feature(train_data)
