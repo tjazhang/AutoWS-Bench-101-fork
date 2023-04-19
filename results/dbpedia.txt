@@ -5,3 +5,10 @@ label model coverage:     1.0
 top 5 label model test acc:   0.42538461538461536
 val-data label counts: [ 1  9  8  6  8  5  6 13 10  5  4  7  8 10]
 
+embedding: raw, extract_fn: bert, lf_selector: snuba_multiclass, 
+n_labeled_points: 140, snuba_cardinality: 1, snuba_iterations: 23, snuba_combo_samples: -1 
+label model test acc:    0.1688954406654733
+label model coverage:     0.4383230769230769 
+top 5 label model test acc:   0.3995296760380471
+val-data label counts: [ 9  7  8 11  8 16 11  7 10 18  8  9  8 10]
+

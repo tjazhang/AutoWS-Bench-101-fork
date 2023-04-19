@@ -701,4 +701,35 @@ def get_banking77(
     return train_data, valid_data, test_data, n_classes, model
     
     
+def get_amazon31(
+    n_labeled_points, dataset_home,  extract_fn, data_dir="amazon31",
+):
+    n_classes = 31
+    
+    data = data_dir
+    extract_feature=(extract_fn != None)
+    train_data, valid_data, test_data = load_dataset(
+        dataset_home, data, extract_feature=extract_feature, extract_fn= extract_fn,
+        cache_name=extract_fn, dataset_type="TextDataset"
+    )
+    valid_data = valid_data.create_subset(np.random.choice(len(valid_data), n_labeled_points, replace = False))
+    
+    if extract_fn is not None:
+        train_data = utils.convert_text_to_feature(train_data)
+        valid_data = utils.convert_text_to_feature(valid_data)
+        test_data = utils.convert_text_to_feature(test_data)
+
+    # Create end model
+    model = EndClassifierModel(
+        batch_size=256,
+        test_batch_size=512,
+        n_steps=1_000,
+        backbone="LENET",
+        optimizer="SGD",
+        optimizer_lr=1e-1,
+        optimizer_weight_decay=0.0,
+        binary_mode=False,
+    )
+    return train_data, valid_data, test_data, n_classes, model
+    
     

@@ -192,6 +192,10 @@ if __name__ == "__main__":
         train_data, valid_data, test_data, k_cls, model = settings.get_banking77(
                 n_labeled_points, dataset_home, extract_fn
         )
+    elif dataset == "amazon31":
+        train_data, valid_data, test_data, k_cls, model = settings.get_amazon31(
+                n_labeled_points, dataset_home, extract_fn
+        )
     else:
         raise NotImplementedError
 
