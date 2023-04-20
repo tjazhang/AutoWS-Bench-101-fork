@@ -348,10 +348,36 @@ if __name__ == "__main__":
     logger.info(f"top 5 label model test acc:   {acc_top5}")
     logger.info(f"label model coverage:    {cov}")
 
-    with open("./results/{}.txt".format(args.dataset), "a+") as outfile:
-        outfile.write(f"embedding: {args.embedding}, extract_fn: {args.extract_fn}, lf_selector: {args.lf_selector}, \nn_labeled_points: {args.n_labeled_points}, snuba_cardinality: {args.snuba_cardinality}, snuba_iterations: {args.snuba_iterations}, snuba_combo_samples: {args.snuba_combo_samples} \n")
-        outfile.write(f"label model test acc:    {acc}\nlabel model coverage:     {cov} \ntop 5 label model test acc:   {acc_top5}\n")
-        outfile.write("val-data label counts: " + np.array_str(np.bincount(valid_data.labels, minlength = k_cls))+ "\n\n")
+
+    filename = dataset.replace("-", "_") + "-" + lf_selector
+    filepath = "./newresults/{}.json".format(filename)
+    if os.path.isfile(filepath):
+        with open(filepath, "r") as outfile:
+            results = json.load(outfile)
+    else:
+        results = {}
+        results["count"] = 0
+    result = {}
+    result["test_acc"] = acc
+    result["top5_test_acc"] = acc_top5
+    result["lf_test_coverage"] = cov
+    result["val_label_count"] = np.array_str(np.bincount(valid_data.labels, minlength = k_cls))
+    result["embedding"] = args.embedding
+    result["extract_fn"] =  args.extract_fn
+    result["#lp"] = args.n_labeled_points 
+    if "snuba" in lf_selector:
+        result["snuba_cardinality"] = args.snuba_cardinality 
+        result["snuba_iterations"] = args.snuba_iterations
+        result["snuba_combo_samples"] = args.snuba_combo_samples
+    results[str(int(results["count"]))] = result
+    results["count"] += 1
+    with open(filepath, "w+") as outfile:
+        outfile.write(json.dumps(results, indent=4, default=str))
+
+    # with open("./results/{}.txt".format(args.dataset), "a+") as outfile:
+    #     outfile.write(f"embedding: {args.embedding}, extract_fn: {args.extract_fn}, lf_selector: {args.lf_selector}, \nn_labeled_points: {args.n_labeled_points}, snuba_cardinality: {args.snuba_cardinality}, snuba_iterations: {args.snuba_iterations}, snuba_combo_samples: {args.snuba_combo_samples} \n")
+    #     outfile.write(f"label model test acc:    {acc}\nlabel model coverage:     {cov} \ntop 5 label model test acc:   {acc_top5}\n")
+    #     outfile.write("val-data label counts: " + np.array_str(np.bincount(valid_data.labels, minlength = k_cls))+ "\n\n")
 
     ################ TRAIN END MODEL ##########################################
     # model.fit(
