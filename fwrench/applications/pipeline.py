@@ -85,6 +85,7 @@ if __name__ == "__main__":
 
     ################ HOUSEKEEPING/SELF-CARE 😊 ################################
     random.seed(seed)
+    np.random.seed(seed)
     logging.basicConfig(
         format="%(asctime)s - %(message)s",
         datefmt="%Y-%m-%d %H:%M:%S",
