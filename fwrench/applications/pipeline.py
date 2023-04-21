@@ -347,7 +347,7 @@ if __name__ == "__main__":
     print( dataset, embedding, extract_fn, lf_selector, n_labeled_points, snuba_cardinality)
     logger.info(f"label model test acc:    {acc}")
     if k_cls >=5:
-    logger.info(f"top 5 label model test acc:   {acc_top5}")
+        logger.info(f"top 5 label model test acc:   {acc_top5}")
     logger.info(f"label model coverage:    {cov}")
 
 

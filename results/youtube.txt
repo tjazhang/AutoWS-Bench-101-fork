@@ -18,6 +18,7 @@ n_labeled_points: 100, snuba_cardinality: 1, snuba_iterations: 23, snuba_combo_s
 label model test acc:    0.748
 label model coverage:     1.0 
 [52 48]
+
 embedding: raw, extract_fn: bert, lf_selector: snuba, 
 n_labeled_points: 100, snuba_cardinality: 1, snuba_iterations: 23, snuba_combo_samples: -1 
 label model test acc:    0.76
