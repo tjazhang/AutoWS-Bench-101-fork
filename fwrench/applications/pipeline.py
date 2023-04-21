@@ -341,10 +341,12 @@ if __name__ == "__main__":
         raise NotImplementedError
 
     acc = accuracy_score(test_covered.labels, hard_labels)
-    acc_top5 = top_k_accuracy_score(test_covered.labels, soft_labels, k = 5, labels = np.arange(k_cls))
+    if k_cls >=5:
+        acc_top5 = top_k_accuracy_score(test_covered.labels, soft_labels, k = 5, labels = np.arange(k_cls))
     cov = float(len(test_covered.labels)) / float(len(test_data.labels))
     print( dataset, embedding, extract_fn, lf_selector, n_labeled_points, snuba_cardinality)
     logger.info(f"label model test acc:    {acc}")
+    if k_cls >=5:
     logger.info(f"top 5 label model test acc:   {acc_top5}")
     logger.info(f"label model coverage:    {cov}")
 
@@ -359,7 +361,8 @@ if __name__ == "__main__":
         results["count"] = 0
     result = {}
     result["test_acc"] = acc
-    result["top5_test_acc"] = acc_top5
+    if k_cls >=5:
+        result["top5_test_acc"] = acc_top5
     result["lf_test_coverage"] = cov
     result["val_label_count"] = np.array_str(np.bincount(valid_data.labels, minlength = k_cls))
     result["embedding"] = args.embedding
