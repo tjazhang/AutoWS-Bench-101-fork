@@ -353,15 +353,21 @@ def get_navier_stokes(
     return train_data, valid_data, test_data, n_classes, model
 
 def get_imdb(
-    n_labeled_points, dataset_home,  extract_fn, data_dir="imdb",
+    n_labeled_points, dataset_home,  extract_fn, max_features, data_dir="imdb",
 ):
     n_classes = 2
     data = data_dir
     extract_feature=(extract_fn != None)
-    train_data, valid_data, test_data = load_dataset(
-        dataset_home, data, extract_feature=extract_feature, extract_fn= extract_fn,
-        cache_name=extract_fn, dataset_type="TextDataset"
-    )
+    if max_features is not None: 
+        train_data, valid_data, test_data = load_dataset(
+            dataset_home, data, extract_feature=extract_feature, extract_fn= extract_fn,
+            max_features = max_features, dataset_type="TextDataset"
+        )
+    else:
+        train_data, valid_data, test_data = load_dataset(
+            dataset_home, data, extract_feature=extract_feature, extract_fn= extract_fn,
+            cache_name=extract_fn, dataset_type="TextDataset"
+        )
 
     valid_data = valid_data.create_subset(np.arange(n_labeled_points))
     if extract_fn is not None:
@@ -384,16 +390,22 @@ def get_imdb(
     return train_data, valid_data, test_data, n_classes, model
 
 def get_yelp(
-    n_labeled_points, dataset_home,  extract_fn, data_dir="yelp",
+    n_labeled_points, dataset_home,  extract_fn, max_features, data_dir="yelp"
 ):
     n_classes = 2
     
     data = data_dir
     extract_feature=(extract_fn != None)
-    train_data, valid_data, test_data = load_dataset(
-        dataset_home, data, extract_feature=extract_feature, extract_fn= extract_fn,
-        cache_name=extract_fn, dataset_type="TextDataset"
-    )
+    if max_features is not None: 
+        train_data, valid_data, test_data = load_dataset(
+            dataset_home, data, extract_feature=extract_feature, extract_fn= extract_fn,
+            max_features = max_features, dataset_type="TextDataset"
+        )
+    else:
+        train_data, valid_data, test_data = load_dataset(
+            dataset_home, data, extract_feature=extract_feature, extract_fn= extract_fn,
+            cache_name=extract_fn, dataset_type="TextDataset"
+        )
 
     valid_data = valid_data.create_subset(np.arange(n_labeled_points))
     if extract_fn is not None:
@@ -416,16 +428,24 @@ def get_yelp(
     return train_data, valid_data, test_data, n_classes, model
 
 def get_youtube(
-    n_labeled_points, dataset_home,  extract_fn, data_dir="youtube",
+    n_labeled_points, dataset_home,  extract_fn, max_features, data_dir="youtube"
 ):
     n_classes = 2
     
     data = data_dir
     extract_feature=(extract_fn != None)
-    train_data, valid_data, test_data = load_dataset(
-        dataset_home, data, extract_feature=extract_feature, extract_fn= extract_fn,
-        cache_name=extract_fn, dataset_type="TextDataset"
-    )
+
+    if max_features is not None: 
+        train_data, valid_data, test_data = load_dataset(
+            dataset_home, data, extract_feature=extract_feature, extract_fn= extract_fn,
+            max_features = max_features, dataset_type="TextDataset"
+        )
+    else:
+        train_data, valid_data, test_data = load_dataset(
+            dataset_home, data, extract_feature=extract_feature, extract_fn= extract_fn,
+            cache_name=extract_fn, dataset_type="TextDataset"
+        )
+        
     valid_data = valid_data.create_subset(np.arange(n_labeled_points))
     
     if extract_fn is not None:

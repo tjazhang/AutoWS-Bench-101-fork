@@ -44,20 +44,24 @@ if __name__ == "__main__":
     parser.add_argument("-sc", "--snuba_cardinality", type = int, default=1)
     parser.add_argument("-si", "--snuba_iterations", type = int, default=23)
     parser.add_argument("-lco", "--lf_class_options", default="default")
+    parser.add_argument("-mf", "--max_features", type = int)
 
 
     args = parser.parse_args()
 
     dataset= args.dataset
     dataset_home= args.root
-    embedding=args.embedding  # raw | pca | resnet18 | vae
+    embedding=args.embedding  # raw | pca | resnet18 | vae 
     # text dataset only
     extract_fn = args.extract_fn # bow | bert | tfidf | sentence_transformer
+    max_features = args.max_features
     #
     # Goggles options
     goggles_method="SemiGMM" # SemiGMM | KMeans | Spectral
     #
     lf_selector=args.lf_selector # snuba | interactive | goggles
+
+
 
     em_hard_labels=False
     if args.hard_label:
@@ -136,30 +140,30 @@ if __name__ == "__main__":
     elif dataset == "imdb":
         if embedding == 'openai' or embedding == 'clip' or embedding == 'clip_zeroshot':
             train_data, valid_data, test_data, k_cls, model = settings.get_imdb(
-                n_labeled_points, dataset_home, extract_fn=None
+                n_labeled_points, dataset_home, extract_fn=None, max_features = None
             )
         else:
             train_data, valid_data, test_data, k_cls, model = settings.get_imdb(
-                n_labeled_points, dataset_home, extract_fn
+                n_labeled_points, dataset_home, extract_fn, max_features = max_features
             )
     elif dataset == "yelp":
         if embedding == 'openai' or embedding == 'clip' or embedding == 'clip_zeroshot':
             train_data, valid_data, test_data, k_cls, model = settings.get_yelp(
-                n_labeled_points, dataset_home, extract_fn=None
+                n_labeled_points, dataset_home, extract_fn=None, max_features = None
             )
         else:
             train_data, valid_data, test_data, k_cls, model = settings.get_yelp(
-                n_labeled_points, dataset_home, extract_fn
+                n_labeled_points, dataset_home, extract_fn, max_features = max_features
             )
     #small dataset, only for testing 
     elif dataset == "youtube":
         if embedding == 'openai' or embedding == 'clip' or embedding == 'clip_zeroshot':
             train_data, valid_data, test_data, k_cls, model = settings.get_youtube(
-                n_labeled_points, dataset_home, extract_fn=None
+                n_labeled_points, dataset_home, extract_fn=None, max_features = None
             )
         else:
             train_data, valid_data, test_data, k_cls, model = settings.get_youtube(
-                n_labeled_points, dataset_home, extract_fn
+                n_labeled_points, dataset_home, extract_fn, max_features = max_features
             )
     elif dataset == "amazon-high-card":
         train_data, valid_data, test_data, k_cls, model = settings.get_amazon_high_card(
@@ -373,6 +377,8 @@ if __name__ == "__main__":
         result["snuba_cardinality"] = args.snuba_cardinality 
         result["snuba_iterations"] = args.snuba_iterations
         result["snuba_combo_samples"] = args.snuba_combo_samples
+    if max_features is not None:
+        result["max_features"] = max_features
     results[str(int(results["count"]))] = result
     results["count"] += 1
     with open(filepath, "w+") as outfile:

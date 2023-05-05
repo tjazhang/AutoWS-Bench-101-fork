@@ -1,0 +1,39 @@
+{
+    "count": 4,
+    "0": {
+        "test_acc": 0.7136842105263158,
+        "lf_test_coverage": 1.0,
+        "val_label_count": "[50 50]",
+        "embedding": "raw",
+        "extract_fn": "tfidf",
+        "#lp": 100,
+        "max_features": 100
+    },
+    "1": {
+        "test_acc": 0.7731578947368422,
+        "lf_test_coverage": 1.0,
+        "val_label_count": "[50 50]",
+        "embedding": "raw",
+        "extract_fn": "tfidf",
+        "#lp": 100,
+        "max_features": 300
+    },
+    "2": {
+        "test_acc": 0.7857894736842105,
+        "lf_test_coverage": 1.0,
+        "val_label_count": "[50 50]",
+        "embedding": "raw",
+        "extract_fn": "tfidf",
+        "#lp": 100,
+        "max_features": 500
+    },
+    "3": {
+        "test_acc": 0.7897368421052632,
+        "lf_test_coverage": 1.0,
+        "val_label_count": "[50 50]",
+        "embedding": "raw",
+        "extract_fn": "tfidf",
+        "#lp": 100,
+        "max_features": 700
+    }
+}

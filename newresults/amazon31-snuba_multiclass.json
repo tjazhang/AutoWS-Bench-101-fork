@@ -1,5 +1,5 @@
 {
-    "count": 2,
+    "count": 4,
     "0": {
         "test_acc": 0.08451137062077443,
         "top5_test_acc": 0.24615857406269206,
@@ -23,5 +23,29 @@
         "snuba_cardinality": 1,
         "snuba_iterations": 23,
         "snuba_combo_samples": -1
+    },
+    "2": {
+        "test_acc": 0.018570102135561744,
+        "top5_test_acc": 0.12418755803156917,
+        "lf_test_coverage": 0.24755775198253074,
+        "val_label_count": "[5 0 1 2 3 4 2 4 3 2 6 9 2 5 4 4 1 3 5 8 2 3 2 4 2 2 1 2 2 3 4]",
+        "embedding": "raw",
+        "extract_fn": "bert",
+        "#lp": 100,
+        "snuba_cardinality": 10,
+        "snuba_iterations": 23,
+        "snuba_combo_samples": 1000
+    },
+    "3": {
+        "test_acc": 0.018570102135561744,
+        "top5_test_acc": 0.1244196843082637,
+        "lf_test_coverage": 0.24755775198253074,
+        "val_label_count": "[5 0 1 2 3 4 2 4 3 2 6 9 2 5 4 4 1 3 5 8 2 3 2 4 2 2 1 2 2 3 4]",
+        "embedding": "raw",
+        "extract_fn": "bert",
+        "#lp": 100,
+        "snuba_cardinality": 10,
+        "snuba_iterations": 23,
+        "snuba_combo_samples": 1000
     }
 }
