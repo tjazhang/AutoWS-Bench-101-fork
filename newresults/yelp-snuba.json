@@ -1,5 +1,5 @@
 {
-    "count": 4,
+    "count": 8,
     "0": {
         "test_acc": 0.6509060022650056,
         "lf_test_coverage": 0.9294736842105263,
@@ -42,6 +42,54 @@
         "val_label_count": "[50 50]",
         "embedding": "raw",
         "extract_fn": "tfidf",
+        "#lp": 100,
+        "snuba_cardinality": 1,
+        "snuba_iterations": 23,
+        "snuba_combo_samples": -1,
+        "max_features": 700
+    },
+    "4": {
+        "test_acc": 0.6881091617933723,
+        "lf_test_coverage": 0.675,
+        "val_label_count": "[50 50]",
+        "embedding": "raw",
+        "extract_fn": "bow",
+        "#lp": 100,
+        "snuba_cardinality": 1,
+        "snuba_iterations": 23,
+        "snuba_combo_samples": -1,
+        "max_features": 100
+    },
+    "5": {
+        "test_acc": 0.7228081740276863,
+        "lf_test_coverage": 0.7984210526315789,
+        "val_label_count": "[50 50]",
+        "embedding": "raw",
+        "extract_fn": "bow",
+        "#lp": 100,
+        "snuba_cardinality": 1,
+        "snuba_iterations": 23,
+        "snuba_combo_samples": -1,
+        "max_features": 300
+    },
+    "6": {
+        "test_acc": 0.6868227892345333,
+        "lf_test_coverage": 0.7528947368421053,
+        "val_label_count": "[50 50]",
+        "embedding": "raw",
+        "extract_fn": "bow",
+        "#lp": 100,
+        "snuba_cardinality": 1,
+        "snuba_iterations": 23,
+        "snuba_combo_samples": -1,
+        "max_features": 500
+    },
+    "7": {
+        "test_acc": 0.6883026726830962,
+        "lf_test_coverage": 0.7581578947368421,
+        "val_label_count": "[50 50]",
+        "embedding": "raw",
+        "extract_fn": "bow",
         "#lp": 100,
         "snuba_cardinality": 1,
         "snuba_iterations": 23,

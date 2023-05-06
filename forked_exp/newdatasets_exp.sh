@@ -27,25 +27,41 @@ export PYTHONPATH="/gscratch/efml/tzhang26/AutoWS-Bench-101-fork"
 
 
 # python fwrench/applications/pipeline.py --dataset youtube --lf_selector snuba -ef tfidf
-# python fwrench/applications/pipeline.py --dataset youtube --lf_selector snuba -ef tfidf -mf 300
+python fwrench/applications/pipeline.py --dataset youtube --lf_selector snuba -ef tfidf -mf 300
 # python fwrench/applications/pipeline.py --dataset yelp --lf_selector snuba -ef tfidf
 # python fwrench/applications/pipeline.py --dataset imdb --lf_selector snuba -ef tfidf
 
 
-for m in 100 300 500 700;
-do 
-    python fwrench/applications/pipeline.py --dataset youtube --lf_selector snuba -ef tfidf -mf $m
-    python fwrench/applications/pipeline.py --dataset yelp --lf_selector snuba -ef tfidf -mf $m
-    python fwrench/applications/pipeline.py --dataset imdb --lf_selector snuba -ef tfidf -mf $m
-done
+# for m in 100 300 500 700;
+# do 
+#     python fwrench/applications/pipeline.py --dataset youtube --lf_selector snuba -ef tfidf -mf $m
+#     python fwrench/applications/pipeline.py --dataset yelp --lf_selector snuba -ef tfidf -mf $m
+#     python fwrench/applications/pipeline.py --dataset imdb --lf_selector snuba -ef tfidf -mf $m
+# done
 
-for m in 100 300 500 700;
-do 
-    python fwrench/applications/pipeline.py --dataset youtube --lf_selector supervised -ef tfidf -mf $m
-    python fwrench/applications/pipeline.py --dataset yelp --lf_selector supervised -ef tfidf -mf $m
-    python fwrench/applications/pipeline.py --dataset imdb --lf_selector supervised -ef tfidf -mf $m
-done
+# for m in 100 300 500 700;
+# do 
+#     python fwrench/applications/pipeline.py --dataset youtube --lf_selector supervised -ef tfidf -mf $m
+#     python fwrench/applications/pipeline.py --dataset yelp --lf_selector supervised -ef tfidf -mf $m
+#     python fwrench/applications/pipeline.py --dataset imdb --lf_selector supervised -ef tfidf -mf $m
+# done
 
-python fwrench/applications/pipeline.py --dataset youtube --lf_selector snuba -ef bow
-python fwrench/applications/pipeline.py --dataset yelp --lf_selector snuba -ef bow
-python fwrench/applications/pipeline.py --dataset imdb --lf_selector snuba -ef bow
+# python fwrench/applications/pipeline.py --dataset youtube --lf_selector snuba -ef bow
+# python fwrench/applications/pipeline.py --dataset yelp --lf_selector snuba -ef bow
+# python fwrench/applications/pipeline.py --dataset imdb --lf_selector snuba -ef bow
+
+
+# for m in 100 300 500 700;
+# do 
+#     python fwrench/applications/pipeline.py --dataset youtube --lf_selector snuba -ef bow -mf $m
+#     python fwrench/applications/pipeline.py --dataset yelp --lf_selector snuba -ef bow -mf $m
+#     python fwrench/applications/pipeline.py --dataset imdb --lf_selector snuba -ef bow -mf $m
+# done
+
+
+# for m in 100 300 500 700;
+# do 
+#     python fwrench/applications/pipeline.py --dataset youtube --lf_selector supervised -ef bow -mf $m
+#     python fwrench/applications/pipeline.py --dataset yelp --lf_selector supervised -ef bow -mf $m
+#     python fwrench/applications/pipeline.py --dataset imdb --lf_selector supervised -ef bow -mf $m
+# done
