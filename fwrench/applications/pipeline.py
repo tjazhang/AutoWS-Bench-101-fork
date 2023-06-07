@@ -201,6 +201,15 @@ if __name__ == "__main__":
         train_data, valid_data, test_data, k_cls, model = settings.get_amazon31(
                 n_labeled_points, dataset_home, extract_fn
         )
+    elif dataset == "cdr":
+        if embedding == 'openai' or embedding == 'clip' or embedding == 'clip_zeroshot':
+            train_data, valid_data, test_data, k_cls, model = settings.get_cdr(
+                n_labeled_points, dataset_home, extract_fn=None, max_features = None
+            )
+        else:
+            train_data, valid_data, test_data, k_cls, model = settings.get_cdr(
+                n_labeled_points, dataset_home, extract_fn, max_features = max_features
+            )
     else:
         raise NotImplementedError
 
