@@ -1,0 +1,39 @@
+{
+    "count": 4,
+    "0": {
+        "test_acc": 0.618446394179328,
+        "lf_test_coverage": 1.0,
+        "val_label_count": "[76 24]",
+        "embedding": "raw",
+        "extract_fn": "bow",
+        "#lp": 100,
+        "max_features": 100
+    },
+    "1": {
+        "test_acc": 0.6370639845923389,
+        "lf_test_coverage": 1.0,
+        "val_label_count": "[76 24]",
+        "embedding": "raw",
+        "extract_fn": "bow",
+        "#lp": 100,
+        "max_features": 300
+    },
+    "2": {
+        "test_acc": 0.6398459233896854,
+        "lf_test_coverage": 1.0,
+        "val_label_count": "[76 24]",
+        "embedding": "raw",
+        "extract_fn": "bow",
+        "#lp": 100,
+        "max_features": 500
+    },
+    "3": {
+        "test_acc": 0.6426278621870319,
+        "lf_test_coverage": 1.0,
+        "val_label_count": "[76 24]",
+        "embedding": "raw",
+        "extract_fn": "bow",
+        "#lp": 100,
+        "max_features": 700
+    }
+}

@@ -73,7 +73,7 @@ class BaseDataset(ABC):
             for key in item['data']:
                 if key == "text":
                     self.examples.append(item['data'])
-                else:
+                elif 'feature' in item['data'].keys():
                     image_path = item['data']['feature']
                     if (isinstance(image_path, str)):
                         file_path = path / f'{split}/{image_path}'
