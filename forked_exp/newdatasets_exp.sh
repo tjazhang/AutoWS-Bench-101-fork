@@ -66,9 +66,11 @@ export PYTHONPATH="/gscratch/efml/tzhang26/AutoWS-Bench-101-fork"
 #     python fwrench/applications/pipeline.py --dataset imdb --lf_selector supervised -ef bow -mf $m
 # done
 
-for lp in 100;
-do 
-    python fwrench/applications/pipeline.py --dataset cdr --lf_selector snuba -ef bow -nlp $lp 
-    python fwrench/applications/pipeline.py --dataset cdr --lf_selector supervised -ef bow -nlp $lp 
-done
+# for lp in 100;
+# do 
+#     python fwrench/applications/pipeline.py --dataset cdr --lf_selector snuba -ef bow -nlp $lp 
+#     python fwrench/applications/pipeline.py --dataset cdr --lf_selector supervised -ef bow -nlp $lp 
+# done
+
+python fwrench/applications/pipeline.py --dataset cdr --lf_selector snuba -nlp 100 -ef bow
 

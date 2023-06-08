@@ -1,5 +1,5 @@
 {
-    "count": 8,
+    "count": 9,
     "0": {
         "test_acc": 0.618446394179328,
         "lf_test_coverage": 1.0,
@@ -73,6 +73,15 @@
         "val_label_count": "[76 24]",
         "embedding": "raw",
         "extract_fn": "bow",
+        "#lp": 100
+    },
+    "8": {
+        "test_acc": 0.6659533490263214,
+        "test_f1": 0.3102076889085285,
+        "lf_test_coverage": 1.0,
+        "val_label_count": "[76 24]",
+        "embedding": "raw",
+        "extract_fn": "bert",
         "#lp": 100
     }
 }

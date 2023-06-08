@@ -1,5 +1,5 @@
 {
-    "count": 8,
+    "count": 9,
     "0": {
         "test_acc": 0.6760111277551893,
         "lf_test_coverage": 1.0,
@@ -94,6 +94,18 @@
         "val_label_count": "[76 24]",
         "embedding": "raw",
         "extract_fn": "bow",
+        "#lp": 100,
+        "snuba_cardinality": 1,
+        "snuba_iterations": 23,
+        "snuba_combo_samples": -1
+    },
+    "8": {
+        "test_acc": 0.4725016049646908,
+        "test_f1": 0.4368288782270962,
+        "lf_test_coverage": 1.0,
+        "val_label_count": "[76 24]",
+        "embedding": "raw",
+        "extract_fn": "bert",
         "#lp": 100,
         "snuba_cardinality": 1,
         "snuba_iterations": 23,
