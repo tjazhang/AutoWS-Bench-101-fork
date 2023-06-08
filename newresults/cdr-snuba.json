@@ -1,5 +1,5 @@
 {
-    "count": 4,
+    "count": 8,
     "0": {
         "test_acc": 0.6760111277551893,
         "lf_test_coverage": 1.0,
@@ -47,5 +47,56 @@
         "snuba_iterations": 23,
         "snuba_combo_samples": -1,
         "max_features": 700
+    },
+    "4": {
+        "test_acc": 0.6764391183393965,
+        "test_f1": 0.0,
+        "lf_test_coverage": 1.0,
+        "val_label_count": "[76 24]",
+        "embedding": "raw",
+        "extract_fn": "bow",
+        "#lp": 100,
+        "snuba_cardinality": 1,
+        "snuba_iterations": 23,
+        "snuba_combo_samples": -1,
+        "max_features": 300
+    },
+    "5": {
+        "test_acc": 0.6803218727139722,
+        "test_f1": 0.05206073752711496,
+        "lf_test_coverage": 0.5850631286111706,
+        "val_label_count": "[207  93]",
+        "embedding": "raw",
+        "extract_fn": "bow",
+        "#lp": 300,
+        "snuba_cardinality": 1,
+        "snuba_iterations": 23,
+        "snuba_combo_samples": -1,
+        "max_features": 300
+    },
+    "6": {
+        "test_acc": 0.6974443528441879,
+        "test_f1": 0.24640657084188908,
+        "lf_test_coverage": 0.2595762893216349,
+        "val_label_count": "[318 182]",
+        "embedding": "raw",
+        "extract_fn": "bow",
+        "#lp": 500,
+        "snuba_cardinality": 1,
+        "snuba_iterations": 23,
+        "snuba_combo_samples": -1,
+        "max_features": 300
+    },
+    "7": {
+        "test_acc": 0.6764391183393965,
+        "test_f1": 0.0,
+        "lf_test_coverage": 1.0,
+        "val_label_count": "[76 24]",
+        "embedding": "raw",
+        "extract_fn": "bow",
+        "#lp": 100,
+        "snuba_cardinality": 1,
+        "snuba_iterations": 23,
+        "snuba_combo_samples": -1
     }
 }

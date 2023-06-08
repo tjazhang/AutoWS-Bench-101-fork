@@ -22,8 +22,7 @@ import fwrench.utils.data_settings as settings
 import numpy as np
 import torch
 from sklearn.decomposition import PCA
-from sklearn.metrics import accuracy_score
-from sklearn.metrics import top_k_accuracy_score
+from sklearn.metrics import accuracy_score, f1_score, top_k_accuracy_score
 from wrench.logging import LoggingHandler
 
 
@@ -355,11 +354,13 @@ if __name__ == "__main__":
         raise NotImplementedError
 
     acc = accuracy_score(test_covered.labels, hard_labels)
+    test_f1 = f1_score(test_covered.labels, hard_labels)
     if k_cls >=5:
         acc_top5 = top_k_accuracy_score(test_covered.labels, soft_labels, k = 5, labels = np.arange(k_cls))
     cov = float(len(test_covered.labels)) / float(len(test_data.labels))
     print( dataset, embedding, extract_fn, lf_selector, n_labeled_points, snuba_cardinality)
     logger.info(f"label model test acc:    {acc}")
+    logger.info(f"label model test f1:    {test_f1}")
     if k_cls >=5:
         logger.info(f"top 5 label model test acc:   {acc_top5}")
     logger.info(f"label model coverage:    {cov}")
@@ -375,6 +376,7 @@ if __name__ == "__main__":
         results["count"] = 0
     result = {}
     result["test_acc"] = acc
+    result["test_f1"] = test_f1
     if k_cls >=5:
         result["top5_test_acc"] = acc_top5
     result["lf_test_coverage"] = cov

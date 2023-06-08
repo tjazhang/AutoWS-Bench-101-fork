@@ -1,5 +1,5 @@
 {
-    "count": 4,
+    "count": 8,
     "0": {
         "test_acc": 0.618446394179328,
         "lf_test_coverage": 1.0,
@@ -35,5 +35,44 @@
         "extract_fn": "bow",
         "#lp": 100,
         "max_features": 700
+    },
+    "4": {
+        "test_acc": 0.6370639845923389,
+        "test_f1": 0.32644956314535345,
+        "lf_test_coverage": 1.0,
+        "val_label_count": "[76 24]",
+        "embedding": "raw",
+        "extract_fn": "bow",
+        "#lp": 100,
+        "max_features": 300
+    },
+    "5": {
+        "test_acc": 0.6178044083030173,
+        "test_f1": 0.32857142857142857,
+        "lf_test_coverage": 1.0,
+        "val_label_count": "[207  93]",
+        "embedding": "raw",
+        "extract_fn": "bow",
+        "#lp": 300,
+        "max_features": 300
+    },
+    "6": {
+        "test_acc": 0.5827091803980312,
+        "test_f1": 0.37818877551020413,
+        "lf_test_coverage": 1.0,
+        "val_label_count": "[318 182]",
+        "embedding": "raw",
+        "extract_fn": "bow",
+        "#lp": 500,
+        "max_features": 300
+    },
+    "7": {
+        "test_acc": 0.6492617162422427,
+        "test_f1": 0.25466120964074584,
+        "lf_test_coverage": 1.0,
+        "val_label_count": "[76 24]",
+        "embedding": "raw",
+        "extract_fn": "bow",
+        "#lp": 100
     }
 }
