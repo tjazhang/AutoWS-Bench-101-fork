@@ -361,8 +361,8 @@ if __name__ == "__main__":
     print( dataset, embedding, extract_fn, lf_selector, n_labeled_points, snuba_cardinality)
     logger.info(f"label model test acc:    {acc}")
     logger.info(f"label model test f1:    {test_f1}")
-    logger.info(f"test dist {np.array_str(np.bincount(test_covered.labels, minlength = k_cls))}")
-    logger.info(f"prediction dist {np.array_str(np.bincount(hard_labels, minlength = k_cls))}")
+    # logger.info(f"test dist {np.array_str(np.bincount(test_covered.labels, minlength = k_cls))}")
+    # logger.info(f"prediction dist {np.array_str(np.bincount(hard_labels, minlength = k_cls))}")
 
     if k_cls >=5:
         logger.info(f"top 5 label model test acc:   {acc_top5}")
